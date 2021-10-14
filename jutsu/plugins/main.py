@@ -8,7 +8,7 @@ DELIMITERS = ("/", ":", "|", "_")
 
 async def separate_sed(sed_string):
     """Separate sed arguments."""
-
+    
     if len(sed_string) < 2:
         return
 
@@ -59,7 +59,8 @@ async def separate_sed(sed_string):
 )
 async def sed(bot, message):
     """For sed command, use sed on Telegram."""
-    sed_result = await separate_sed(message.text)
+    text = message.text
+    sed_result = await separate_sed(text)
     textx = await bot.get_messages(message.chat.id, message.reply_to_message.message_id)
     if sed_result:
         if textx:
