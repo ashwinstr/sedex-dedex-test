@@ -88,13 +88,13 @@ async def sed(bot, message):
                 return await bot.send_message(message.chat.id, "`Boi!, that's a reply. Don't use sed`")
 
             if "i" in flags and "g" in flags:
-                text = re.sub(r"{str(repl)}", repl_with, to_fix, flags=re.I).strip()
+                text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, flags=re.I).strip()
             elif "i" in flags:
-                text = re.sub(r"{str(repl)}", repl_with, to_fix, count=1, flags=re.I).strip()
+                text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, count=1, flags=re.I).strip()
             elif "g" in flags:
-                text = re.sub(r"{str(repl)}", repl_with, to_fix).strip()
+                text = re.sub(fr"{repl}", fr"{repl_with}", to_fix).strip()
             else:
-                text = re.sub(r"{str(repl)}", repl_with, to_fix, count=1).strip()
+                text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, count=1).strip()
         except sre_err:
             return await bot.send_message("[**Learn Regex**](https://regexone.com)")
         if text:
