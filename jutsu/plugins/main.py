@@ -9,12 +9,12 @@ DELIMITERS = ("/", ":", "|", "_")
 async def separate_sed(sed_string):
     """Separate sed arguments."""
     
-    if len(sed_string) < 2:
+    if len(sed_string) < 1:
         return
 
-    if sed_string[2] in DELIMITERS and sed_string.count(sed_string[2]) >= 2:
-        delim = sed_string[2]
-        start = counter = 3
+    if sed_string[1] in DELIMITERS and sed_string.count(sed_string[1]) >= 1:
+        delim = sed_string[1]
+        start = counter = 2
         while counter < len(sed_string):
             if sed_string[counter] == "\\":
                 counter += 1
@@ -63,7 +63,6 @@ async def sed(bot, message):
     reply_ = message.reply_to_message
     if not reply_:
         return
-    await bot.send_message(message.chat.id, text)
     sed_result = await separate_sed(text)
     textx = await bot.get_messages(message.chat.id, message.reply_to_message.message_id)
     if sed_result:
