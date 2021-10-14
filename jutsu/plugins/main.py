@@ -85,7 +85,8 @@ async def sed(bot, message):
         try:
             check = re.match(repl, to_fix, flags=re.IGNORECASE)
             if check and check.group(0).lower() == to_fix.lower():
-                return await bot.send_message(message.chat.id, "`Boi!, that's a reply. Don't use sed`")
+                 pass
+#                return await bot.send_message(message.chat.id, "`Boi!, that's a reply. Don't use sed`")
 
             if "i" in flags and "g" in flags:
                 text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, flags=re.I).strip()
