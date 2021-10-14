@@ -63,7 +63,7 @@ async def sed(bot, message):
     reply_ = message.reply_to_message
     if not reply_:
         return
-    await bot.send_message(message.chat.id, text, 
+    await bot.send_message(message.chat.id, text)
     sed_result = await separate_sed(text)
     textx = await bot.get_messages(message.chat.id, message.reply_to_message.message_id)
     if sed_result:
