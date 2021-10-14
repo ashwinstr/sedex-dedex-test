@@ -1,6 +1,8 @@
 import re
 from sre_constants import error as sre_err
 
+from pyrogram import Client, filters
+
 DELIMITERS = ("/", ":", "|", "_")
 
 
@@ -52,30 +54,32 @@ async def separate_sed(sed_string):
     return None
 
 
-@register(outgoing=True, pattern=r"^\.s")
-async def sed(command):
+@Client.on_message(
+    filters.command(["s"])
+)
+async def sed(bot, message):
     """For sed command, use sed on Telegram."""
-    sed_result = await separate_sed(command.text)
-    textx = await command.get_reply_message()
+    sed_result = await separate_sed(message.text)
+    textx = await bot.get_messages(message.chat.id, message.reply_to_message.message_id)
     if sed_result:
         if textx:
             to_fix = textx.text
         else:
-            return await command.edit(
-                "**Master, I don't have brains. Well you neither I guess.**"
+            return await bot.send_message(
+                "`Master, I don't have brains. Well you neither I guess.`"
             )
 
         repl, repl_with, flags = sed_result
 
         if not repl:
-            return await command.edit(
-                "**Master, I don't have brains. Well you neither I guess.**"
+            return await bot.send_message(
+                "`Master, I don't have brains. Well you neither I guess.`"
             )
 
         try:
             check = re.match(repl, to_fix, flags=re.IGNORECASE)
             if check and check.group(0).lower() == to_fix.lower():
-                return await command.edit("**Boi!, that's a reply. Don't use sed**")
+                return await command.edit("`Boi!, that's a reply. Don't use sed`")
 
             if "i" in flags and "g" in flags:
                 text = re.sub(repl, repl_with, to_fix, flags=re.I).strip()
@@ -86,6 +90,6 @@ async def sed(command):
             else:
                 text = re.sub(repl, repl_with, to_fix, count=1).strip()
         except sre_err:
-            return await command.edit("B O I! [Learn Regex](https://regexone.com)")
+            return await bot.send_message("B O I! [Learn Regex](https://regexone.com)")
         if text:
-            await command.edit(f"**Did you mean?** \n\n{text}")
+            await bot.send_message(f"`{text}`")
