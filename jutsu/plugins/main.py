@@ -60,6 +60,10 @@ async def separate_sed(sed_string):
 async def sed(bot, message):
     """For sed command, use sed on Telegram."""
     text = message.text
+    reply_ = message.reply_to_message
+    if not reply_:
+        return
+    await bot.send_message(message.chat.id, text, 
     sed_result = await separate_sed(text)
     textx = await bot.get_messages(message.chat.id, message.reply_to_message.message_id)
     if sed_result:
@@ -91,6 +95,6 @@ async def sed(bot, message):
             else:
                 text = re.sub(repl, repl_with, to_fix, count=1).strip()
         except sre_err:
-            return await bot.send_message("B O I! [Learn Regex](https://regexone.com)")
+            return await bot.send_message("[**Learn Regex**](https://regexone.com)")
         if text:
-            await bot.send_message(f"`{text}`")
+            await bot.send_message(message.chat.id, f"`{text}`", reply_to_message_id=reply_.message_id)
