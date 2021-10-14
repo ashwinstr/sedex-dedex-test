@@ -9,6 +9,8 @@ DELIMITERS = ("/", ":", "|", "_")
 async def separate_sed(sed_string):
     """Separate sed arguments."""
     
+    if sed_string.endswith(" -d"):
+        sed_string.replace(" -d", "")
     if len(sed_string) < 1:
         return
 
@@ -83,7 +85,7 @@ async def sed(bot, message):
         try:
             check = re.match(repl, to_fix, flags=re.IGNORECASE)
             if check and check.group(0).lower() == to_fix.lower():
-                return await bot.send_message(message.chat.it, "`Boi!, that's a reply. Don't use sed`")
+                return await bot.send_message(message.chat.id, "`Boi!, that's a reply. Don't use sed`")
 
             if "i" in flags and "g" in flags:
                 text = re.sub(repl, repl_with, to_fix, flags=re.I).strip()
@@ -98,8 +100,8 @@ async def sed(bot, message):
         if text:
             await bot.send_message(message.chat.id, f"`{text}`", reply_to_message_id=reply_.message_id)
             
-        if text.endswith("-d"):
+        if text.endswith(" -d"):
             try:
-                await bot.delete_messages(message.chat.id, message.message_id)
-            except:
-                pass
+                await bot.delete_messages(message.chat.id, [message.message_id])
+            except Exception as e:
+                await bot.send_message(message.chat.id, f"`Got an error when auto-deleting, tell @Kakashi_HTK\n**ERROR:** `{e}`")
