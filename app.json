@@ -1,0 +1,15 @@
+{
+    "name": "SedexxBot",
+    "description": "A bot running on pyrogram by @Kakashi_HTK.",
+    "env": {
+        "APP_ID": {
+            "description": "get it from my.telegram.org",
+        },
+        "API_HASH": {
+            "description": "get it from my.telegram.org",
+        },
+        "BOT_TOKEN": {
+            "description": "make a bot with help of @BotFather and get it from there",
+        },
+    },
+}
