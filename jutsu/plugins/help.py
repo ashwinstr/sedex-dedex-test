@@ -24,4 +24,9 @@ For more help or to learn regex, go [here](www.regexone.com).
 
 Good luck.
 """
-    await bot.send_message(message.chat.id, help, reply_to_message_id=reply_to)
+    await bot.send_message(
+        message.chat.id,
+        help,
+        reply_to_message_id=reply_to,
+        disable_web_page_preview=True
+    )
