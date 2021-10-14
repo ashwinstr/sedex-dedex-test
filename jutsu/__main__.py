@@ -11,7 +11,7 @@ BOT_TOKEN = config("BOT_TOKEN", default=None)
 
 if __name__ == "__main__" :
     print("### Starting Bot... ###")
-    plugins = dict(root="jutsu/plugins")
+    plugins = dict(root="jutsu/plugin")
     app = pyrogram.Client(
         "sharingan",
         bot_token=BOT_TOKEN,
