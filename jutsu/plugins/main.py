@@ -57,7 +57,7 @@ async def separate_sed(sed_string):
 
 
 @Client.on_message(
-    filters.regex(pattern="s/*/*")
+    filters.regex(pattern="[a]/*/*")
 )
 async def sed(bot, message):
     """For sed command, use sed on Telegram."""
@@ -104,5 +104,5 @@ async def sed(bot, message):
         if str(og_text).endswith(" -d"):
             try:
                 await bot.delete_messages(message.chat.id, [message.message_id])
-            except Exception as e:
-                await bot.send_message(message.chat.id, f"`Got an error when auto-deleting, tell @Kakashi_HTK\n**ERROR:** `{e}`")
+            except MessageDeleteForbidden:
+                await bot.send_message(message.chat.id, f"`Message delete is forbidden, promote me to auto-delete command messages...`")
