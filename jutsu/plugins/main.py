@@ -97,7 +97,7 @@ async def sed(bot, message):
             else:
                 text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, count=1).strip()
         except sre_err:
-            return await bot.send_message("[**Learn Regex**](https://regexone.com)")
+            return await bot.send_message(message.chat.id, "[**Learn Regex**](https://regexone.com)")
         if text:
             await bot.send_message(message.chat.id, f"`{text}`", reply_to_message_id=reply_.message_id)
             
