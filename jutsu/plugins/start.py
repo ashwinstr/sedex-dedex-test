@@ -5,7 +5,9 @@ from pyrogram import Client, filters
     filters.command(["start"])
 )
 async def start_(bot, message):
+    reply_to = message.reply_to_message.message_id
     await bot.send_message(
         message.chat.id,
         f"Hello {message.from_user.first_name}, thank you for using this bot...",
+        reply_to_message_id=reply_to
     )
