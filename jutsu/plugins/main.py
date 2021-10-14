@@ -61,11 +61,11 @@ async def separate_sed(sed_string):
 )
 async def sed(bot, message):
     """For sed command, use sed on Telegram."""
-    text = message.text
+    og_text = message.text
     reply_ = message.reply_to_message
     if not reply_:
         return
-    sed_result = await separate_sed(text)
+    sed_result = await separate_sed(og_text)
     textx = await bot.get_messages(message.chat.id, message.reply_to_message.message_id)
     if sed_result:
         if textx:
@@ -100,7 +100,7 @@ async def sed(bot, message):
         if text:
             await bot.send_message(message.chat.id, f"`{text}`", reply_to_message_id=reply_.message_id)
             
-        if str(text).endswith(" -d"):
+        if str(og_text).endswith(" -d"):
             try:
                 await bot.delete_messages(message.chat.id, [message.message_id])
             except Exception as e:
