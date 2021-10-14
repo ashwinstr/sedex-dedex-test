@@ -9,8 +9,8 @@ DELIMITERS = ("/", ":", "|", "_")
 async def separate_sed(sed_string):
     """Separate sed arguments."""
     
-    if sed_string.endswith(" -d"):
-        sed_string.replace(" -d", "")
+    if str(sed_string).endswith(" -d"):
+        sed_string = sed_string.replace(" -d", "")
     if len(sed_string) < 1:
         return
 
@@ -100,7 +100,7 @@ async def sed(bot, message):
         if text:
             await bot.send_message(message.chat.id, f"`{text}`", reply_to_message_id=reply_.message_id)
             
-        if text.endswith(" -d"):
+        if str(text).endswith(" -d"):
             try:
                 await bot.delete_messages(message.chat.id, [message.message_id])
             except Exception as e:
