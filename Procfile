@@ -1,0 +1,1 @@
+sharingan: python -m jutsu
