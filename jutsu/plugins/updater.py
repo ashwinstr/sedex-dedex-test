@@ -15,6 +15,7 @@ async def updater_(bot, message):
     up_repo = "http://github.com/ashwinstr/regex"
     branch = "main"
     repo = Repo()
+    await bot.send_message(message.chat.id, "testing") 
     try:
         out = _get_updates(repo, branch)
     except GitCommandError as g_e:
@@ -24,7 +25,7 @@ async def updater_(bot, message):
             )
             out = _get_updates(repo, branch)
         else:
-            await message.err(g_e, del_in=5)
+            await bot.send_message(message.chat.id, g_e)
             return
     if input_.endswith("-pull"):
         if out:
@@ -36,7 +37,7 @@ async def updater_(bot, message):
             )
             asyncio.get_event_loop().create_task(bot.restart(True))
         else:
-            await bot.send_message(message.chat.id, "**SedexBot is already up-to-date.**")
+            await bot.send_message(message.chat.id, "**SedexBot is up-to-date.**")
     else:
         if out:
             change_log = (
