@@ -87,7 +87,11 @@ async def sed(bot, message):
                 textx = await bot.get_messages(message.chat.id, msg_id)
             except:
                 continue
-            if repl in textx.text:
+            try:
+                textx_text = textx.text
+            except:
+                continue
+            if repl in textx_text:
                 reply_to = textx.message_id
                 found = True
                 break
