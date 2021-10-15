@@ -83,7 +83,10 @@ async def sed(bot, message):
     else:
         for a in range(15):
             msg_id = (message.message_id - a) - 1
-            textx = await bot.get_messages(message.chat.id, msg_id)
+            try:
+                textx = await bot.get_messages(message.chat.id, msg_id)
+            except:
+                continue
             if repl in textx.text:
                 found = True
                 break
