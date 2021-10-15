@@ -10,8 +10,8 @@ DELIMITERS = ("/", ":", "|", "_")
 async def separate_sed(sed_string):
     """Separate sed arguments."""
     
-    if str(sed_string).endswith(" -r"):
-        sed_string = sed_string.replace(" -r", "")
+    if str(sed_string).endswith(" -n"):
+        sed_string = sed_string.replace(" -n", "")
     if len(sed_string) < 1:
         return
 
@@ -99,11 +99,13 @@ async def sed(bot, message):
                 text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, count=1).strip()
         except sre_err:
             return await bot.send_message(message.chat.id, "[**Learn Regex**](https://regexone.com)")
-        if text:
-            await bot.send_message(message.chat.id, f"`{text}`", reply_to_message_id=reply_.message_id)
-            
-        if not str(og_text).endswith(" -r"):
+
+        if not str(og_text).endswith(" -n"):
             try:
                 await bot.delete_messages(message.chat.id, [message.message_id])
             except MessageDeleteForbidden:
                 pass
+ 
+        if text:
+            await bot.send_message(message.chat.id, f"`{text}`", reply_to_message_id=reply_.message_id)
+            
