@@ -88,6 +88,7 @@ async def sed(bot, message):
             except:
                 continue
             if repl in textx.text:
+                reply_to = textx.message_id
                 found = True
                 break
             else:
