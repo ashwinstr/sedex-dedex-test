@@ -81,6 +81,8 @@ async def sed(bot, message):
     if is_reply:
         textx = await bot.get_messages(message.chat.id, message.reply_to_message.message_id)
     else:
+        if not repl:
+            return
         for a in range(15):
             msg_id = (message.message_id - a) - 1
             try:
