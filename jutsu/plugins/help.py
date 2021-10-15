@@ -2,7 +2,7 @@ from pyrogram import filters, Client
 
 
 @Client.on_message(
-    filters.command(["help"], prefixes=";")
+    filters.command(["help"], prefixes=";"), group=1
 )
 async def helper(bot, message):
     reply_to = message.message_id
