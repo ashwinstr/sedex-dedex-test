@@ -2,6 +2,7 @@ import re
 from sre_constants import error as sre_err
 
 from pyrogram import Client, filters
+from pyrogram.errors import MessageDeleteForbidden
 
 DELIMITERS = ("/", ":", "|", "_")
 
