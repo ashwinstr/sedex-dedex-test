@@ -58,7 +58,7 @@ async def separate_sed(sed_string):
 
 
 @Client.on_message(
-    filters.regex(pattern="[a]/*/*")
+    filters.regex(pattern="[a]/*/*"), group=-1
 )
 async def sed(bot, message):
     """For sed command, use sed on Telegram."""
