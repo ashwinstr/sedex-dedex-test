@@ -66,6 +66,10 @@ async def sed(bot, message):
     reply_ = message.reply_to_message
     if not reply_:
         return
+    else:
+        if not reply_.text and not reply_.caption:
+            await bot.send_message(message.chat.id, "Reply to message with text plox...", reply_to_message_id=reply_.message_id)
+            return
     sed_result = await separate_sed(og_text)
     textx = await bot.get_messages(message.chat.id, message.reply_to_message.message_id)
     if sed_result:
