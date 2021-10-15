@@ -13,7 +13,7 @@ from git.exc import GitCommandError
 )
 async def updater_(bot, message):
     input_ = message.text
-    up_repo = "http://github.com/ashwinstr/regex"
+    up_repo = "http://github.com/ashwinstr/sedex"
     branch = "main"
     repo = Repo()
     await bot.send_message(message.chat.id, "testing") 
@@ -53,7 +53,7 @@ async def updater_(bot, message):
         return 
 
 def _get_updates(repo: Repo, branch: str) -> str:
-    up_repo = "http://github.com/ashwinstr/regex"
+    up_repo = "http://github.com/ashwinstr/sedex"
     repo.remote(up_repo).fetch(branch)
     upst = up_repo.rstrip("/")
     out = ""
@@ -63,7 +63,7 @@ def _get_updates(repo: Repo, branch: str) -> str:
 
 
 async def _pull_from_repo(repo: Repo, branch: str) -> None:
-    up_repo = "http://github.com/ashwinstr/regex"
+    up_repo = "http://github.com/ashwinstr/sedex"
     repo.git.checkout(branch, force=True)
     repo.git.reset("--hard", branch)
     repo.remote(up_repo).pull(branch, force=True)
