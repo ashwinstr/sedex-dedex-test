@@ -9,8 +9,8 @@ DELIMITERS = ("/", ":", "|", "_")
 async def separate_sed(sed_string):
     """Separate sed arguments."""
     
-    if str(sed_string).endswith(" -d"):
-        sed_string = sed_string.replace(" -d", "")
+    if str(sed_string).endswith(" -r"):
+        sed_string = sed_string.replace(" -r", "")
     if len(sed_string) < 1:
         return
 
@@ -101,8 +101,8 @@ async def sed(bot, message):
         if text:
             await bot.send_message(message.chat.id, f"`{text}`", reply_to_message_id=reply_.message_id)
             
-        if str(og_text).endswith(" -d"):
+        if not str(og_text).endswith(" -r"):
             try:
                 await bot.delete_messages(message.chat.id, [message.message_id])
             except MessageDeleteForbidden:
-                await bot.send_message(message.chat.id, f"`Message delete is forbidden, promote me to auto-delete command messages...`")
+                pass
