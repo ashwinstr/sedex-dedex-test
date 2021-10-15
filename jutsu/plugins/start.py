@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 
 
 @Client.on_message(
-    filters.command(["start"], prefixes=";"), group=1
+    filters.command(["start"], prefixes=";"), group=2
 )
 async def start_(bot, message):
     reply_to = message.message_id
