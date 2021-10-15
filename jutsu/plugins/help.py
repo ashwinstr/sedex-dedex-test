@@ -15,7 +15,7 @@ Replace any part of the target message to have fun with friends...
 **HOW:**
 To use this bot, you need to send command with reply to the targeted message with the command.
 `a/text that will be replaced/text that will replace`
-**Note:** To auto-delete the command message use `-d` at the end of the command.
+**Note:** To not auto-delete the command message use `-n` at the end of the command.
 
 **EXAMPLE:**
 Reply to a message with text as "Hi, nice to meet you." with
