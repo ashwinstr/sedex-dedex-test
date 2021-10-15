@@ -58,7 +58,7 @@ async def separate_sed(sed_string):
 
 
 @Client.on_message(
-    filters.regex(pattern="[a]/*/*"), group=-1
+    filters.regex(pattern=r"[a]/*/*"), group=-1
 )
 async def sed(bot, message):
     """For sed command, use sed on Telegram."""
@@ -107,5 +107,5 @@ async def sed(bot, message):
                 pass
  
         if text:
-            await bot.send_message(message.chat.id, f"`{text}`", reply_to_message_id=reply_.message_id)
+            await bot.send_message(message.chat.id, text, reply_to_message_id=reply_.message_id)
             
