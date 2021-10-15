@@ -64,14 +64,33 @@ async def sed(bot, message):
     """For sed command, use sed on Telegram."""
     og_text = message.text
     reply_ = message.reply_to_message
+    is_reply = True
     if not reply_:
-        return
+        is_reply = False
     else:
         if not reply_.text and not reply_.caption:
             await bot.send_message(message.chat.id, "Reply to message with text plox...", reply_to_message_id=reply_.message_id)
             return
     sed_result = await separate_sed(og_text)
-    textx = await bot.get_messages(message.chat.id, message.reply_to_message.message_id)
+    if sed_result:
+        repl, repl_with, flags = sed_result
+    else:
+        return
+    
+    if is_reply:
+        textx = await bot.get_messages(message.chat.id, message.reply_to_message.message_id)
+    else:
+        for a in range(15):
+            msg_id = (message.message_id - a) - 1
+            textx = await bot.get_messages(message.chat.id, msg_id)
+            if repl in textx.text:
+                found = True
+                break
+            else:
+                found = False
+        if not found:
+            return
+        
     if sed_result:
         if textx:
             to_fix = textx.text
@@ -80,8 +99,8 @@ async def sed(bot, message):
                 "`Master, I don't have brains. Well you neither I guess.`"
             )
 
-        repl, repl_with, flags = sed_result
-
+        
+                    
         if not repl:
             return await bot.send_message(
                 "`Master, I don't have brains. Well you neither I guess.`"
