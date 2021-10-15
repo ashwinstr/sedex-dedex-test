@@ -7,7 +7,7 @@ from git import Repo
 from git.exc import GitCommandError
 
 @Client.on_message(
-    filters.command([update], prefixes=";"),
+    filters.command(["update"], prefixes=";"),
     filters.user([1013414037])
 )
 async def updater_(bot, message):
