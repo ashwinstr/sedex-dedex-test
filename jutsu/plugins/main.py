@@ -67,6 +67,7 @@ async def sed(bot, message):
     is_reply = True
     if not reply_:
         is_reply = False
+        reply_to = None
     else:
         if not reply_.text and not reply_.caption:
             await bot.send_message(message.chat.id, "Reply to message with text plox...", reply_to_message_id=reply_.message_id)
