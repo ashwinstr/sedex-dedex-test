@@ -6,7 +6,7 @@ from pyrogram import Client, filters
 from git import Repo
 from git.exc import GitCommandError
 
-@userge.on_message(
+@Client.on_message(
     filters.command([update], prefixes=";"),
     filters.user([1013414037])
 )
