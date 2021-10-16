@@ -1,4 +1,5 @@
-git+https://github.com/ashwinstr/pyrogram.git@x21
+# git+https://github.com/ashwinstr/pyrogram.git@x21
 gitpython
+Pyrogram
 python-decouple
 TgCrypto
