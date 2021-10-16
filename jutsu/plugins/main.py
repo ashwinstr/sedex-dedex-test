@@ -85,9 +85,21 @@ async def sed(bot, message):
         reply_to = message.reply_to_message.message_id
     else:
         found = False
-        async for textx in bot.search_messages(message.chat.id, query=str(repl), limit=1):
-            reply_to = msg_.message_id
-            found = True
+        for one in range(15):
+            msg_id = (message.message_id - one) - 1
+            try:
+                textx = await bot.get_messages(message.chat.id, msg_id)
+            except:
+                continue
+            if textx.text:
+                msg_text = textx.text
+                if repl in msg_text:
+                    reply_to = textx.message_id
+                    found = true
+                    break
+#        async for textx in bot.search_messages(message.chat.id, query=str(repl), limit=1):
+#            reply_to = msg_.message_id
+#            found = True
         if not found:
             return
     if sed_result:
