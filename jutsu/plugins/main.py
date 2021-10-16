@@ -95,7 +95,7 @@ async def sed(bot, message):
                 msg_text = textx.text
                 if repl in msg_text:
                     reply_to = textx.message_id
-                    found = true
+                    found = True
                     break
 #        async for textx in bot.search_messages(message.chat.id, query=str(repl), limit=1):
 #            reply_to = msg_.message_id
