@@ -13,7 +13,7 @@ Hello there **{message.from_user.first_name}**, this is the Sedex bot.
 Replace any part of the target message to have fun with friends...
 
 **HOW:**
-To use this bot, you need to send command with reply to the targeted message with the command.
+To use this bot, you need to send command with reply to the targeted message.
 `a/text that will be replaced/text that will replace`
 **Note:** To not auto-delete the command message use `-n` at the end of the command.
 
