@@ -76,30 +76,20 @@ async def sed(bot, message):
         repl, repl_with, flags = sed_result
     else:
         return
-    
+    if not repl:
+            return await bot.send_message(
+                "`Master, I don't have brains. Well you neither I guess.`"
+            ) 
     if is_reply:
         textx = await bot.get_messages(message.chat.id, message.reply_to_message.message_id)
         reply_to = message.reply_to_message.message_id
     else:
-        for a in range(15):
-            msg_id = (message.message_id - a) - 1
-            try:
-                textx = await bot.get_messages(message.chat.id, msg_id)
-            except:
-                continue
-            if textx.text:
-                textx_text = textx.text
-            else:
-                continue
-            if repl in textx_text:
-                reply_to = textx.message_id
-                found = True
-                break
-            else:
-                found = False
+        found = False
+        async for textx in userge.search_messages(message.chat.id, query=repl, limit=1):
+            reply_to = msg_.message_id
+            found = True
         if not found:
             return
-        
     if sed_result:
         if textx:
             to_fix = textx.text
@@ -107,20 +97,10 @@ async def sed(bot, message):
             return await bot.send_message(
                 "`Master, I don't have brains. Well you neither I guess.`"
             )
-
-        
-                    
-        if not repl:
-            return await bot.send_message(
-                "`Master, I don't have brains. Well you neither I guess.`"
-            )
-
         try:
             check = re.match(repl, to_fix, flags=re.IGNORECASE)
             if check and check.group(0).lower() == to_fix.lower():
                  pass
-#                return await bot.send_message(message.chat.id, "`Boi!, that's a reply. Don't use sed`")
-
             if "i" in flags and "g" in flags:
                 text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, flags=re.I).strip()
             elif "i" in flags:
@@ -131,13 +111,11 @@ async def sed(bot, message):
                 text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, count=1).strip()
         except sre_err:
             return await bot.send_message(message.chat.id, "[**Learn Regex**](https://regexone.com)")
-
         if not str(og_text).endswith(" -n"):
             try:
                 await bot.delete_messages(message.chat.id, [message.message_id])
             except MessageDeleteForbidden:
                 pass
- 
         if text:
             await bot.send_message(message.chat.id, text, reply_to_message_id=reply_to)
            
