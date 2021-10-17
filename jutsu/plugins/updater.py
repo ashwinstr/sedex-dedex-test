@@ -7,7 +7,6 @@ import time
 from pyrogram import Client, filters
 from git import Repo
 from git.exc import GitCommandError
-from jutsu.__main__ import HEROKU_APP
 
 
 HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", None)
