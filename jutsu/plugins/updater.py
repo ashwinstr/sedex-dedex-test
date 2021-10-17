@@ -1,17 +1,18 @@
 
 from os import system
 import asyncio
+import time
 
 from pyrogram import Client, filters
 from git import Repo
 from git.exc import GitCommandError
 
 @Client.on_message(
-    filters.command(["update"], prefixes=";")
+    filters.command(["test"], prefixes=";")
     & filters.user([1013414037]),
-    group=0
+    group=4
 )
-async def updater_(bot, message):
+async def tester_(bot, message):
     input_ = message.text
     up_repo = "http://github.com/ashwinstr/sedex"
     branch = "main"
@@ -68,3 +69,21 @@ async def _pull_from_repo(repo: Repo, branch: str) -> None:
     repo.git.reset("--hard", branch)
     repo.remote(up_repo).pull(branch, force=True)
     await asyncio.sleep(1) 
+
+
+@Client.on_message(
+    filters.command(["test"], prefixes=";")
+    & filters.user([1013414037]),
+    group=0
+)
+async def updater_(bot, message):
+    if Config.HEROKU_APP:
+        await bot.send_message(
+            message.chat.id,
+            "`Heroku app found, trying to restart dyno...\nthis will take upto 30 sec`",
+        )
+        Config.HEROKU_APP.restart()
+        time.sleep(20)
+    else:
+        await bot.send_message(message.chat.id, "`Restarting [HARD] ...`")
+        asyncio.get_event_loop().create_task(bot.restart(hard=True))
