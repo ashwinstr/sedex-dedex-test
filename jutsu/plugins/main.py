@@ -122,7 +122,7 @@ async def sed(bot, message):
             )
         try:
 #            if repl_with == r"\\.{4}":
-            repl_with = script_escape_re.sub(, s)
+            repl_with = script_escape_re.sub(repl_with, s)
         except:
             pass
         try:
