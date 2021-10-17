@@ -132,7 +132,8 @@ async def sed(bot, message):
             else:
                 text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, count=1).strip()
         except sre_err:
-            return await bot.send_message(message.chat.id, "[**Learn Regex**](https://regexone.com)")
+            pass
+#            return await bot.send_message(message.chat.id, "[**Learn Regex**](https://regexone.com)")
         if text:
             await bot.send_message(message.chat.id, text, reply_to_message_id=reply_to)
            
