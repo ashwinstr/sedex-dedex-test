@@ -21,7 +21,7 @@ To use this bot, you need to send command with reply to the targeted message.
 Reply to a message with text as "Hi, nice to meet you." with
 `a/Hi/Bye`
 
-For more help or to learn regex, go [here](www.regexone.com).
+For more help or to learn regex, go **[here](www.regexone.com)**.
 
 Good luck.
 """
