@@ -85,10 +85,14 @@ async def sed(bot, message):
         reply_to = message.reply_to_message.message_id
     else:
         found = False
+        last = False
         for one in range(15):
             msg_id = (message.message_id - one) - 1
             try:
                 textx = await bot.get_messages(message.chat.id, msg_id)
+                if not last:
+                    last_msg = textx
+                    last = True
             except:
                 continue
             if textx.text:
@@ -98,10 +102,11 @@ async def sed(bot, message):
                     found = True
                     break
 #        async for textx in bot.search_messages(message.chat.id, query=str(repl), limit=1):
-#            reply_to = msg_.message_id
+#            reply_to = textx.message_id
 #            found = True
         if not found:
-            return
+            textx = last_msg
+            reply_to = textx.message_id
     if sed_result:
         if textx:
             to_fix = textx.text
