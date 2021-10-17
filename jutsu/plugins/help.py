@@ -7,24 +7,24 @@ from pyrogram import filters, Client
 async def helper(bot, message):
     reply_to = message.message_id
     help = f"""
-Hello there **{message.from_user.first_name}**, this is the Sedex bot.
+__Hello there__ **{message.from_user.first_name}**__, this is the Sedex bot.__
 
 **USAGE:**
-Replace any part of the target message to have fun with friends...
+__Replace any part of the target message to have fun with friends...__
 
 **HOW:**
-To use this bot, you need to send command with reply to the targeted message.
+__To use this bot, you need to send command with reply to the targeted message.__
 `a/text that will be replaced/text that will replace`
-**Note:** To not auto-delete the command message use `-n` at the end of the command.
+**Note:** __To not auto-delete the command message use__ `-n` __at the end of the command.__
 
 **EXAMPLE:**
-Reply to a message with text as "Hi, nice to meet you." with
+__Reply to a message with text as "Hi, nice to meet you." with__
 `a/Hi/Bye`
 
-For more help or to learn regexone, go **[here](www.regexone.com)**
-Or from regexr, go **[here](www.regexr.com)**
+__For more help or to learn regexone, go__ **[here](www.regexone.com)**
+__Or from regexr, go__ **[here](www.regexr.com)**
 
-Good luck.
+__Good luck.__
 """
     await bot.send_message(
         message.chat.id,
