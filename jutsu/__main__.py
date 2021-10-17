@@ -1,3 +1,4 @@
+import heroku3
 import os
 import pyrogram
 from decouple import config
