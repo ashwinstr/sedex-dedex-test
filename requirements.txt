@@ -1,5 +1,6 @@
 # git+https://github.com/ashwinstr/pyrogram.git@x21
 gitpython
+heroku3
 Pyrogram
 python-decouple
 TgCrypto
