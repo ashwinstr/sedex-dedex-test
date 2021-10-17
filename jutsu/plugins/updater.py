@@ -94,7 +94,7 @@ async def updater_(bot, message):
             message.chat.id,
             "`Heroku app found, trying to restart dyno...\nthis will take upto 30 sec`",
         )
-        Config.HEROKU_APP.restart()
+        HEROKU_APP.restart()
         time.sleep(20)
     else:
         await bot.send_message(message.chat.id, "`Restarting [HARD] ...`")
