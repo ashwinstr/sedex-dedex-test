@@ -3,3 +3,4 @@ gitpython
 Pyrogram
 python-decouple
 TgCrypto
+Unidecode
