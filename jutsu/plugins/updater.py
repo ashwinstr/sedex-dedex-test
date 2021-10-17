@@ -1,4 +1,5 @@
-
+import heroku3
+import os
 from os import system
 import asyncio
 import time
@@ -6,7 +7,18 @@ import time
 from pyrogram import Client, filters
 from git import Repo
 from git.exc import GitCommandError
-from jutsu import HEROKU_APP
+from jutsu.__main__ import HEROKU_APP
+
+
+HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", None)
+HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
+HEROKU_ENV = True
+HEROKU_APP = (
+        heroku3.from_key(HEROKU_API_KEY).apps()[HEROKU_APP_NAME]
+        if HEROKU_ENV and HEROKU_API_KEY and HEROKU_APP_NAME
+        else None
+    )
+
 
 @Client.on_message(
     filters.command(["test"], prefixes=";")
