@@ -121,7 +121,8 @@ async def sed(bot, message):
                 "`Master, I don't have brains. Well you neither I guess.`"
             )
         try:
-            repl_with = unicode(repl_with)
+#            if repl_with == r"\\.{4}":
+            repl_with = script_escape_re.sub(, s)
         except:
             pass
         try:
@@ -129,13 +130,13 @@ async def sed(bot, message):
             if check and check.group(0).lower() == to_fix.lower():
                  pass
             if "i" in flags and "g" in flags:
-                text = re.sub(fr"{repl}", repl_with, to_fix, flags=re.I).strip()
+                text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, flags=re.I).strip()
             elif "i" in flags:
-                text = re.sub(fr"{repl}", repl_with, to_fix, count=1, flags=re.I).strip()
+                text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, count=1, flags=re.I).strip()
             elif "g" in flags:
-                text = re.sub(fr"{repl}", repl_with, to_fix).strip()
+                text = re.sub(fr"{repl}", fr"{repl_with}", to_fix).strip()
             else:
-                text = re.sub(fr"{repl}", repl_with, to_fix, count=1).strip()
+                text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, count=1).strip()
         except sre_err as e:
             return await bot.send_message(message.chat.id, f"**ERROR:** {e}")
 #            return await bot.send_message(message.chat.id, "**[Learn Regex](https://regexone.com)**")
