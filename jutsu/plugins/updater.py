@@ -6,6 +6,7 @@ import time
 from pyrogram import Client, filters
 from git import Repo
 from git.exc import GitCommandError
+from jutsu import HEROKU_APP
 
 @Client.on_message(
     filters.command(["test"], prefixes=";")
@@ -77,7 +78,7 @@ async def _pull_from_repo(repo: Repo, branch: str) -> None:
     group=0
 )
 async def updater_(bot, message):
-    if Config.HEROKU_APP:
+    if HEROKU_APP:
         await bot.send_message(
             message.chat.id,
             "`Heroku app found, trying to restart dyno...\nthis will take upto 30 sec`",
