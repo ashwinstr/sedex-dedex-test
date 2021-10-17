@@ -72,7 +72,7 @@ async def _pull_from_repo(repo: Repo, branch: str) -> None:
 
 
 @Client.on_message(
-    filters.command(["test"], prefixes=";")
+    filters.command(["update"], prefixes=";")
     & filters.user([1013414037]),
     group=0
 )
