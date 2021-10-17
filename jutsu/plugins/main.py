@@ -1,6 +1,7 @@
 import re
 from sre_constants import error as sre_err
 
+from unidecode import unidecode
 from pyrogram import Client, filters
 from pyrogram.errors import MessageDeleteForbidden
 
@@ -119,6 +120,10 @@ async def sed(bot, message):
             return await bot.send_message(
                 "`Master, I don't have brains. Well you neither I guess.`"
             )
+        try:
+            repl_with = unicode(repl_with)
+        except:
+            pass
         try:
             check = re.match(repl, to_fix, flags=re.IGNORECASE)
             if check and check.group(0).lower() == to_fix.lower():
