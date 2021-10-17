@@ -63,6 +63,11 @@ async def separate_sed(sed_string):
 async def sed(bot, message):
     """For sed command, use sed on Telegram."""
     og_text = message.text
+    if not str(og_text).endswith(" -n"):
+            try:
+                await bot.delete_messages(message.chat.id, [message.message_id])
+            except MessageDeleteForbidden:
+                pass 
     reply_ = message.reply_to_message
     is_reply = True
     if not reply_:
@@ -128,11 +133,6 @@ async def sed(bot, message):
                 text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, count=1).strip()
         except sre_err:
             return await bot.send_message(message.chat.id, "[**Learn Regex**](https://regexone.com)")
-        if not str(og_text).endswith(" -n"):
-            try:
-                await bot.delete_messages(message.chat.id, [message.message_id])
-            except MessageDeleteForbidden:
-                pass
         if text:
             await bot.send_message(message.chat.id, text, reply_to_message_id=reply_to)
            
