@@ -21,7 +21,7 @@ async def separate_sed(sed_string):
         delim = sed_string[1]
         start = counter = 2
         while counter < len(sed_string):
-            if sed_string[counter] == "\\":
+            if sed_string[counter] == r"\\":
                 counter += 1
 
             elif sed_string[counter] == delim:
