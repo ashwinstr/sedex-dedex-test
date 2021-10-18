@@ -1,4 +1,5 @@
 import re
+import emoji
 from sre_constants import error as sre_err
 
 from unidecode import unidecode
@@ -80,6 +81,8 @@ async def sed(bot, message):
     sed_result = await separate_sed(og_text)
     if sed_result:
         repl, repl_with, flags = sed_result
+        repl = emoji.demojize(repl)
+        repl_with = emoji.demojize(repl_with)
     else:
         return
     if not repl:
