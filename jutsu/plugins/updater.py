@@ -94,8 +94,9 @@ async def updater_(bot, message):
             message.chat.id,
             "`Heroku app found, trying to restart dyno...\nthis will take upto 30 sec`",
         )
+        system("deploy-to-heroku mysedex")
+        time.sleep(30)
         HEROKU_APP.restart()
-        time.sleep(20)
     else:
         await bot.send_message(message.chat.id, "`Restarting [HARD] ...`")
         asyncio.get_event_loop().create_task(bot.restart(hard=True))
