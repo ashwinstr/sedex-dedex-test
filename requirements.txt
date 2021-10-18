@@ -1,6 +1,4 @@
 # git+https://github.com/ashwinstr/pyrogram.git@x21
-colorama
-deploy-to-heroku
 emoji
 gitpython
 heroku3
