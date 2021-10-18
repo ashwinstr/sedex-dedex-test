@@ -14,6 +14,8 @@ async def separate_sed(sed_string):
     
     if str(sed_string).endswith(" -n"):
         sed_string = sed_string.replace(" -n", "")
+    else:
+        sed_string = str(sed_string)
     if len(sed_string) < 1:
         return
 
