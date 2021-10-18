@@ -1,4 +1,5 @@
 # git+https://github.com/ashwinstr/pyrogram.git@x21
+deploy-to-heroku
 emoji
 gitpython
 heroku3
