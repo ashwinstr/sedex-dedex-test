@@ -81,8 +81,8 @@ async def sed(bot, message):
     sed_result = await separate_sed(og_text)
     if sed_result:
         repl, repl_with, flags = sed_result
-        repl = emoji.demojize(repl)
-        repl_with = emoji.demojize(repl_with)
+#        repl = emoji.demojize(repl)
+#        repl_with = emoji.demojize(repl_with)
     else:
         return
     if not repl:
