@@ -1,3 +1,5 @@
+import os
+
 from pyrogram import Client, filters
 from .updater import HEROKU_APP
 
@@ -15,7 +17,7 @@ async def logging_(bot, message):
         limit = 100
     if HEROKU_APP:
         logs = (HEROKU_APP.get_log)(lines=limit)
-        file_name = "sedex-heroku.log"
+        file_name = "logs/sedex-heroku.log"
         with open(file_name, "w+") as file:
             file.write(logs)
             file.close()
@@ -25,3 +27,4 @@ async def logging_(bot, message):
             document=file_name,
             caption=f"sedex-heroku.log [ {limit} lines ]",
         )
+        os.remove(file_name)
