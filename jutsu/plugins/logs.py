@@ -1,4 +1,4 @@
-from pyrogram import filters
+from pyrogram import Client, filters
 from .updater import HEROKU_APP
 
 
