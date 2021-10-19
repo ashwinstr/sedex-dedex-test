@@ -25,6 +25,6 @@ async def logging_(bot, message):
         await bot.send_document(
             chat_id=message.chat.id,
             document=file_name,
-            caption=f"sedex-heroku.log [ {limit} lines ]",
+            caption=f"**Sedex-heroku.log** [ {limit} lines ]",
         )
         os.remove(file_name)
