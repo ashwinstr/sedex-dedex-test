@@ -90,7 +90,7 @@ async def _pull_from_repo(repo: Repo, branch: str) -> None:
 )
 async def updater_(bot, message):
     if HEROKU_APP:
-        await bot.send_message(
+        msg_ = await bot.send_message(
             message.chat.id,
             "`Heroku app found, trying to restart dyno...\nthis will take upto 30 sec`",
         )
@@ -99,7 +99,8 @@ async def updater_(bot, message):
 #        await asyncio.sleep(10)
 #        asyncio.get_event_loop().create_task(bot.restart())
         HEROKU_APP.restart()
-#        time.sleep(20)
+        time.sleep(10)
+        await msg_.delete()
     else:
         await bot.send_message(message.chat.id, "`Restarting [HARD] ...`")
         asyncio.get_event_loop().create_task(bot.restart(hard=True))
