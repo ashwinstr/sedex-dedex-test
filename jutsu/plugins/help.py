@@ -15,6 +15,7 @@ __Replace any part of the target message to have fun with friends...__
 **HOW:**
 __To use this bot, you need to send command with reply to the targeted message.__
 `a/text that will be replaced/text that will replace`
+
 **Note:** __To not auto-delete the command message use__ `-n` __at the end of the command.__
 
 **EXAMPLE:**
