@@ -15,9 +15,12 @@ async def logging_(bot, message):
         limit = 100
     if HEROKU_APP:
         logs = (HEROKU_APP.get_log)(lines=limit)
-        await message.send_as_file(
+        file = open("sedex-heroku.log", "w+")
+        file.write(logs)
+        await msg_.delete()
+        await bot.send_document(
             chat_id=message.chat.id,
-            text=logs,
-            filename="sedex-heroku.log",
+            document=file,
+            file_name="sedex-heroku.log",
             caption=f"sedex-heroku.log [ {limit} lines ]",
         )
