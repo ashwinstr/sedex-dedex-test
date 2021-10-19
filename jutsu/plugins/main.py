@@ -87,7 +87,7 @@ async def sed(bot, message):
     if sed_result:
         repl, repl_with, flags = sed_result
         repl_with = unidecode(f"{repl_with}")
-        await bot.send_message(message.chat.id, repl_with)
+#        await bot.send_message(message.chat.id, repl_with)
 #        repl_with = str(repl_with)
 #        repl = emoji.demojize(repl)
 #        repl_with = emoji.demojize(repl_with)
