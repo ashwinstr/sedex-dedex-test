@@ -99,7 +99,7 @@ async def updater_(bot, message):
 #        await asyncio.sleep(10)
 #        asyncio.get_event_loop().create_task(bot.restart())
         HEROKU_APP.restart()
-        time.sleep(20)
+#        time.sleep(20)
     else:
         await bot.send_message(message.chat.id, "`Restarting [HARD] ...`")
         asyncio.get_event_loop().create_task(bot.restart(hard=True))
