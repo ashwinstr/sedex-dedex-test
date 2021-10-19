@@ -20,7 +20,7 @@ HEROKU_APP = (
 
 
 @Client.on_message(
-    filters.command(["test"], prefixes=";")
+    filters.command(["update"], prefixes=";")
     & filters.user([1013414037]),
     group=4
 )
@@ -84,7 +84,7 @@ async def _pull_from_repo(repo: Repo, branch: str) -> None:
 
 
 @Client.on_message(
-    filters.command(["update"], prefixes=";")
+    filters.command(["restart"], prefixes=";")
     & filters.user([1013414037]),
     group=0
 )
@@ -94,11 +94,12 @@ async def updater_(bot, message):
             message.chat.id,
             "`Heroku app found, trying to restart dyno...\nthis will take upto 30 sec`",
         )
-        repo_ = "https://github.com/ashwinstr/sedex.git"
-        system(f"git pull {repo_}")
-        await asyncio.sleep(10)
-        asyncio.get_event_loop().create_task(bot.restart())
-#        HEROKU_APP.restart()
+#        repo_ = "https://github.com/ashwinstr/sedex.git"
+#        system(f"git pull {repo_}")
+#        await asyncio.sleep(10)
+#        asyncio.get_event_loop().create_task(bot.restart())
+        HEROKU_APP.restart()
+        time.sleep(20)
     else:
         await bot.send_message(message.chat.id, "`Restarting [HARD] ...`")
         asyncio.get_event_loop().create_task(bot.restart(hard=True))
