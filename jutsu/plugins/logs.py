@@ -10,10 +10,8 @@ from .updater import HEROKU_APP
 async def logging_(bot, message):
     await bot.send_message(message.chat.id, "`Checking logs...`")
     try:
-        limit = (message.text).split()[1]
+        limit = int((message.text).split()[1])
     except:
-        limit = 100
-    if not limit.isdigit():
         limit = 100
     if HEROKU_APP:
         logs = (HEROKU_APP.get_log)(lines=limit)
