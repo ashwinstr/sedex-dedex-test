@@ -94,7 +94,7 @@ async def updater_(bot, message):
             message.chat.id,
             "`Heroku app found, trying to restart dyno...\nthis will take upto 30 sec`",
         )
-        repo_ = "https://github.com/ashwinstr/sedex"
+        repo_ = "https://github.com/ashwinstr/sedex.git"
         system(f"git pull {repo_}")
         await asyncio.sleep(10)
         asyncio.get_event_loop().create_task(bot.restart())
