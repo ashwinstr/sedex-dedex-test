@@ -17,6 +17,8 @@ async def logging_(bot, message):
         limit = 100
     if HEROKU_APP:
         logs = (HEROKU_APP.get_log)(lines=limit)
+        if not os.path.isdir("logs"):
+            os.mkdir("logs")
         file_name = "logs/sedex-heroku.log"
         with open(file_name, "w+") as file:
             file.write(logs)
