@@ -22,7 +22,7 @@ __Reply to a message with text as "Hi, nice to meet you." with__
 `a/Hi/Bye`
 
 __For more help or to learn from regexone, go__ **[here](www.regexone.com)**
-__Or from regexr, go__ **[here](www.regexr.com).**
+__Or from regexr, go__ **[here](www.regexr.com)**
 
 __Good luck.__
 """
