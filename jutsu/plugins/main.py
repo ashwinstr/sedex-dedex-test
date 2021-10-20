@@ -137,9 +137,9 @@ async def sed(bot, message):
         except:
             pass
         try:
-            check = re.match(repl, to_fix, flags=re.IGNORECASE)
-            if check and check.group(0).lower() == to_fix.lower():
-                 pass
+#            check = re.match(repl, to_fix, flags=re.IGNORECASE)
+#            if check and check.group(0).lower() == to_fix.lower():
+#                 pass
             if "i" in flags and "g" in flags:
                 text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, flags=re.I).strip()
             elif "i" in flags:
