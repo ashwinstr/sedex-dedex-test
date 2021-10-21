@@ -152,5 +152,5 @@ async def sed(bot, message):
             return await bot.send_message(message.chat.id, f"**ERROR:** {e}")
 #            return await bot.send_message(message.chat.id, "**[Learn Regex](https://regexone.com)**")
         if text:
-            await bot.send_message(message.chat.id, text, reply_to_message_id=reply_to)
+            await bot.send_message(message.chat.id, text.html, reply_to_message_id=reply_to, parse_mode="html")
            
