@@ -86,8 +86,6 @@ async def sed(bot, message):
     sed_result = await separate_sed(og_text)
     if sed_result:
         repl, repl_with, flags = sed_result
-        repl = repl.html
-        repl_with = repl_with.html
 #        repl_with = unidecode(f"{repl_with}")
 #        await bot.send_message(message.chat.id, repl_with)
 #        repl_with = str(repl_with)
