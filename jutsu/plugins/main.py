@@ -149,7 +149,8 @@ async def sed(bot, message):
             elif "m" in flags:
                 text = re.sub(fr"{repl}", fr"{repl_with}", to_fix.html, count=1).strip()
             elif "u" in flags:
-                text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, count=1, flags=re.UNICODE).strip()
+                repl_with = re.compile(repl_with, flags=re.UNICODE)
+                text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, count=1).strip()
             else:
                 text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, count=1).strip()
         except sre_err as e:
