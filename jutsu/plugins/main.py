@@ -153,7 +153,8 @@ async def sed(bot, message):
 #            if repl_with == r"\\.{4}":
             repl_with = script_escape_re.sub(f"{repl_with}", s)
         except Exception as e:
-            await bot.send_message(-1001507821723, f"Error: {e}") 
+#            await bot.send_message(-1001507821723, f"Error: {e}")
+            pass
         try:
             check = re.match(repl, to_fix, flags=re.IGNORECASE)
             if check and check.group(0).lower() == to_fix.lower():
