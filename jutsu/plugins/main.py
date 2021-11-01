@@ -67,15 +67,19 @@ async def separate_sed(sed_string):
 UNI = ""
 
 
-@Client.on_message(
+"""@Client.on_message(
     filters.regex(pattern=r"^[a]\\u.{4}", flags=re.UNICODE), group=3
 )
-async def unicode_convert(bot, message):
+def unicode_convert():
     global UNI
     UNI = message.text
     send_to = -1001507821723
     send_text = f"**Message sent in:** `{message.chat.id}`\n**Text:**\n{UNI}"
-    await bot.send_message(send_to, send_text)
+    await bot.send_message(send_to, send_text)"""
+
+def uni_(unicode: str):
+    uni = re.sub("(u.{4})", "b'\\\\\1'", unicode, count=1)
+    return uni
 
 
 @Client.on_message(
@@ -163,7 +167,7 @@ async def sed(bot, message):
             elif "m" in flags:
                 text = re.sub(fr"{repl}", fr"{repl_with}", to_fix.html, count=1).strip()
             elif "u" in flags:
-                repl_with = repl_with.decode('utf-8')
+                repl = uni_(repl)
                 text = re.sub(fr"{repl}", repl_with, to_fix, count=1).strip()
             else:
                 text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, count=1).strip()
