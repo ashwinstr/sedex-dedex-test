@@ -79,7 +79,7 @@ async def unicode_convert(bot, message):
 
 
 @Client.on_message(
-    filters.regex(pattern="^[a]\/.*\/.*"), group=-1
+    filters.regex(pattern="^[a]\/.*\/.*", flags=re.UNICODE), group=-1
 )
 async def sed(bot, message):
     """For sed command, use sed on Telegram."""
