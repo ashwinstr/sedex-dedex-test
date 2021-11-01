@@ -68,7 +68,7 @@ UNI = ""
 
 
 @Client.on_message(
-    filters.regex(pattern="\u.{4}"), group=3
+    filters.regex(pattern=r"\u.{4}"), group=3
 )
 async def unicode_convert(bot, message):
     global UNI
