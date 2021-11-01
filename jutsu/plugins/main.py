@@ -163,7 +163,7 @@ async def sed(bot, message):
             elif "m" in flags:
                 text = re.sub(fr"{repl}", fr"{repl_with}", to_fix.html, count=1).strip()
             elif "u" in flags:
-#                repl_with = fr"{repl_with}".encode('utf-8')
+                repl_with = repl_with.decode('utf-8')
                 text = re.sub(fr"{repl}", repl_with, to_fix, count=1).strip()
             else:
                 text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, count=1).strip()
