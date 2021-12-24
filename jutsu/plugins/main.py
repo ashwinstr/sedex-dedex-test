@@ -2,10 +2,8 @@
 
 
 import re
-import emoji
 from sre_constants import error as sre_err
 
-from unidecode import unidecode
 from pyrogram import Client, filters
 from pyrogram.errors import MessageDeleteForbidden
 
@@ -28,7 +26,6 @@ async def separate_sed(sed_string):
         while counter < len(sed_string):
             if sed_string[counter] == r"\\":
                 counter += 1
-
             elif sed_string[counter] == delim:
                 replace = sed_string[start:counter]
                 counter += 1
@@ -64,21 +61,6 @@ async def separate_sed(sed_string):
     return None
 
 
-"""@Client.on_message(
-    filters.regex(pattern=r"^[a]\\u.{4}", flags=re.UNICODE), group=3
-)
-def unicode_convert():
-    global UNI
-    UNI = message.text
-    send_to = -1001507821723
-    send_text = f"**Message sent in:** `{message.chat.id}`\n**Text:**\n{UNI}"
-    await bot.send_message(send_to, send_text)"""
-
-def uni_(unicode: str):
-    uni = re.sub("(u.{4})", "b'\\\\\1'", unicode, count=1)
-    return uni
-
-
 @Client.on_message(
     filters.regex(pattern="^[a]\/.*\/.*"), group=-1
 )
@@ -86,10 +68,10 @@ async def sed(bot, message):
     """For sed command, use sed on Telegram."""
     og_text = message.text
     if not str(og_text).endswith(" -n"):
-            try:
-                await bot.delete_messages(message.chat.id, [message.message_id])
-            except MessageDeleteForbidden:
-                pass 
+        try:
+            await bot.delete_messages(message.chat.id, [message.message_id])
+        except MessageDeleteForbidden:
+            pass 
     reply_ = message.reply_to_message
     is_reply = True
     if not reply_:
@@ -159,8 +141,8 @@ async def sed(bot, message):
             elif "u" in flags:
                 repl_with = bytes(repl_with, "utf-8").decode('unicode_escape')
                 text = re.sub(fr"{repl}", repl_with, to_fix, count=1).strip()
-            elif "e" in flags:
-                text = re.sub(fr"{repl}", repl_with, to_fix, count=1).strip()
+#            elif "e" in flags:
+#                text = re.sub(fr"{repl}", repl_with, to_fix, count=1).strip()
             else:
                 text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, count=1).strip()
         except sre_err as e:
