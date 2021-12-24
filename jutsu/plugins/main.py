@@ -101,11 +101,6 @@ async def sed(bot, message):
     sed_result = await separate_sed(og_text)
     if sed_result:
         repl, repl_with, flags = sed_result
-#        repl_with = unidecode(f"{repl_with}")
-#        await bot.send_message(message.chat.id, repl_with)
-#        repl_with = str(repl_with)
-#        repl = emoji.demojize(repl)
-#        repl_with = emoji.demojize(repl_with)
     else:
         return
     if not repl:
@@ -133,9 +128,6 @@ async def sed(bot, message):
                     reply_to = textx.message_id
                     found = True
                     break
-#        async for textx in bot.search_messages(message.chat.id, query=str(repl), limit=1):
-#            reply_to = textx.message_id
-#            found = True
         if not found:
             textx = last_msg
             reply_to = textx.message_id
@@ -146,12 +138,6 @@ async def sed(bot, message):
             return await bot.send_message(
                 "`Master, I don't have brains. Well you neither I guess.`"
             )
-        try:
-#            if repl_with == r"\\.{4}":
-            repl_with = script_escape_re.sub(f"{repl_with}", s)
-        except Exception as e:
-#            await bot.send_message(-1001507821723, f"Error: {e}")
-            pass
         try:
             check = re.match(repl, to_fix, flags=re.IGNORECASE)
             if check and check.group(0).lower() == to_fix.lower():
@@ -172,6 +158,8 @@ async def sed(bot, message):
                 text = re.sub(fr"{repl}", fr"{repl_with}", to_fix.html, count=1).strip()
             elif "u" in flags:
                 repl_with = bytes(repl_with, "utf-8").decode('unicode_escape')
+                text = re.sub(fr"{repl}", repl_with, to_fix, count=1).strip()
+            elif "e" in flags:
                 text = re.sub(fr"{repl}", repl_with, to_fix, count=1).strip()
             else:
                 text = re.sub(fr"{repl}", fr"{repl_with}", to_fix, count=1).strip()
