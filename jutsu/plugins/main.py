@@ -153,3 +153,11 @@ async def sed(bot, message):
         if text:
             await bot.send_message(message.chat.id, text, reply_to_message_id=reply_to, parse_mode="html")
            
+
+@Client.on_message(
+    filters.regex(pattern="^[r]\/.*"), group=-2
+)
+async def no_reply_sed(bot, message):
+    text_ = message.text
+    input_ = text_.split("/", 1)[1]
+    await bot.send_message(message.chat.id, input_, disable_web_page_preview=True)
