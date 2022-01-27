@@ -9,16 +9,16 @@ from os import geteuid
 from pyrogram import filters
 from pyrogram.types import Message
 from jutsu.helpers import telegrapher
-from jutsu import sedex
+from jutsu import sedex, Sedex
 
 
 @sedex.on_message(
-    filters.command(["eval"], prefixes=":")
+    filters.command(["eval"], prefixes=";")
     & filters.user([1013414037])
     & filters.group,
     group=8
 )
-async def eval_(message: Message):
+async def eval_(sedex: Sedex, message: Message):
     try:
         cmd = (message.text).split(" ", 1)[1]
     except:
