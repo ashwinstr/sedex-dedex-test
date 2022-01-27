@@ -118,15 +118,12 @@ class Term:
     def cancel(self) -> None:
         self._process.kill()
 
-    @property
     def finished(self) -> bool:
         return self._finished
 
-    @property
     def read_line(self) -> str:
         return (self._stdout_line + self._stderr_line).decode("utf-8").strip()
 
-    @property
     def get_output(self) -> str:
         return (self._stdout + self._stderr).decode("utf-8").strip()
 
@@ -153,7 +150,6 @@ class Term:
         await self._process.wait()
         self._finished = True
 
-    @classmethod
     async def execute(cls, cmd: str) -> "Term":
         process = await asyncio.create_subprocess_shell(
             cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
