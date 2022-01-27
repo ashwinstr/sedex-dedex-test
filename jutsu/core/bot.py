@@ -25,7 +25,7 @@ async def _complete_init_tasks() -> None:
     _INIT_TASKS.clear()
 
 
-class _AbstractUserge():
+class _AbstractUserge(Client):
     async def finalize_load(self) -> None:
         """ finalize the plugins load """
         await asyncio.gather(_complete_init_tasks(), self.manager.init())
@@ -43,7 +43,7 @@ class _AbstractUserge():
             if asyncio.iscoroutinefunction(plg._init):
                 _INIT_TASKS.append(self.loop.create_task(plg._init()))
 
-class Sedex(Client):
+class Sedex(_AbstractUserge):
     def __init__(self):
         kwargs = {
             'api_id': Config.API_ID,
