@@ -4,7 +4,7 @@ import sys
 from os.path import dirname
 from typing import List
 
-from jutsu import get_import_path
+from jutsu.helpers import get_import_path
 
 
 _LOG = logging.getLogger(__name__)
