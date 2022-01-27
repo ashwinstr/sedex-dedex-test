@@ -73,16 +73,16 @@ async def eval_(sedex: Sedex, message: Message):
     & filters.user([Config.OWNER_ID]),
     group=-2
 )
-async def term_(message: Message):
+async def term_(sedex: Sedex, message: Message):
     """run commands in shell (terminal with live update)"""
     cmd = await init_func(message)
     if cmd is None:
         return
-    await message.edit("`Executing terminal ...`")
+    msg = await message.reply("`Executing terminal ...`")
     try:
         t_obj = await Term.execute(cmd)  # type: Term
     except Exception as t_e:  # pylint: disable=broad-except
-        await message.err(str(t_e))
+        await msg.edit(str(t_e))
         return
     curruser = getuser()
     try:
@@ -95,17 +95,19 @@ async def term_(message: Message):
         count += 1
         if message.process_is_canceled:
             t_obj.cancel()
-            await message.reply("`process canceled!`")
+            await msg.reply("`process canceled!`")
             return
         await asyncio.sleep(0.5)
-        if count >= Config.EDIT_SLEEP_TIMEOUT * 2:
+        if count >= 10 * 2:
             count = 0
             out_data = f"<pre>{output}{t_obj.read_line}</pre>"
             await message.try_to_edit(out_data, parse_mode="html")
     out_data = f"<pre>{output}{t_obj.get_output}</pre>"
-    await message.edit_or_send_as_file(
-        out_data, parse_mode="html", filename="term.txt", caption=cmd
-    )
+    if len(out_data) <= 4096:
+        await message.edit(out_data)
+    else:
+        link_ = telegrapher("Terminal execution.", out_data)
+        await msg.edit(f"The terminal output is **[HERE]({link_})**")
 
 
 async def init_func(message: Message):
