@@ -96,18 +96,6 @@ async def term_(sedex: Sedex, message: Message):
     except ImportError:
         uid = 1
     output = f"{curruser}:~# {cmd}\n" if uid == 0 else f"{curruser}:~$ {cmd}\n"
-    count = 0
-    while not t_obj.finished:
-        count += 1
-        if message.process_is_canceled:
-            t_obj.cancel()
-            await msg.reply("`process canceled!`")
-            return
-        await asyncio.sleep(0.5)
-        if count >= 10 * 2:
-            count = 0
-            out_data = f"<pre>{output}{t_obj.read_line}</pre>"
-            await message.try_to_edit(out_data, parse_mode="html")
     out_data = f"<pre>{output}{t_obj.get_output}</pre>"
     if len(out_data) <= 4096:
         await message.edit(out_data)
