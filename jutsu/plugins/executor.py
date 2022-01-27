@@ -98,7 +98,7 @@ async def term_(sedex: Sedex, message: Message):
     output = f"{curruser}:~# {cmd}\n" if uid == 0 else f"{curruser}:~$ {cmd}\n"
     out_data = f"<pre>{output}{t_obj.get_output}</pre>"
     if len(out_data) <= 4096:
-        await message.edit(out_data)
+        await msg.edit(out_data)
     else:
         link_ = telegrapher("Terminal execution.", out_data)
         await msg.edit(f"The terminal output is **[HERE]({link_})**")
