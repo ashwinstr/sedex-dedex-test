@@ -1,1 +1,1 @@
-sharingan: python -m jutsu
+sedex: bash run
