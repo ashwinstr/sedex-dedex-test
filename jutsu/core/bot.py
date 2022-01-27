@@ -16,7 +16,7 @@ from pyrogram.errors import MessageNotModified
 from jutsu import Config, logbot
 from jutsu.plugins import get_all_plugins
 
-from .ext import Raw
+from .ext import RawClient
 
 # logging.basicConfig(level=logging.INFO)
 
