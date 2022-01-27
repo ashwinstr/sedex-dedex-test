@@ -7,11 +7,11 @@ import logging
 from typing import List
 from types import ModuleType
 
-from pyrogram import Client, logbot
+from pyrogram import Client
 
 from pyrogram.errors import MessageNotModified
 
-from jutsu import Config
+from jutsu import Config, logbot
 from jutsu.plugins import get_all_plugins
 
 # logging.basicConfig(level=logging.INFO)
