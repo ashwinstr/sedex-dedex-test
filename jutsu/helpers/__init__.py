@@ -1,1 +1,1 @@
-from .tools import telegraphers
+from .tools import telegrapher
