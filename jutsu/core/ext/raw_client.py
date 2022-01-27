@@ -1,6 +1,7 @@
 __all__ = ['RawClient']
 
 import asyncio
+import logging
 from math import floor
 from typing import Optional, Dict, List
 from time import time, perf_counter, sleep
@@ -11,9 +12,8 @@ from pyrogram import Client
 from pyrogram.session import Session
 from pyrogram.raw.core import TLObject
 
-import jutsu  # pylint: disable=unused-import
 
-_LOG = jutsu.logging.getLogger(__name__)
+_LOG = logging.getLogger(__name__)
 _LOG_STR = "<<<!  {  (FLOOD CONTROL) sleeping %.2fs in %d  }  !>>>"
 
 
