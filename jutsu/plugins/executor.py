@@ -75,7 +75,6 @@ async def eval_(sedex: Sedex, message: Message):
 )
 async def term_(sedex: Sedex, message: Message):
     """run commands in shell (terminal with live update)"""
-    cmd = await init_func(message)
     try:
         cmd = (message.text).split(" ", 1)[1]
     except:
@@ -115,17 +114,6 @@ async def term_(sedex: Sedex, message: Message):
     else:
         link_ = telegrapher("Terminal execution.", out_data)
         await msg.edit(f"The terminal output is **[HERE]({link_})**")
-
-
-async def init_func(message: Message):
-    cmd = message.input_str
-    if not cmd:
-        await message.err("No Command Found!")
-        return None
-    if "config.env" in cmd:
-        await message.err("That's a dangerous operation! Not Permitted!")
-        return None
-    return cmd
 
 
 class Term:
