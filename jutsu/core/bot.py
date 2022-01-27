@@ -3,14 +3,16 @@
 import asyncio
 import importlib
 import logging
+
 from typing import List
 from types import ModuleType
 
-from pyrogram import Client
+from pyrogram import Client, logbot
 
 from pyrogram.errors import MessageNotModified
 
 from jutsu import Config
+from jutsu.plugins import get_all_plugins
 
 # logging.basicConfig(level=logging.INFO)
 
@@ -47,7 +49,7 @@ class _AbstractUserge(Client):
             if asyncio.iscoroutinefunction(plg._init):
                 _INIT_TASKS.append(self.loop.create_task(plg._init()))
 
-"""     async def _load_plugins(self) -> None:
+    async def _load_plugins(self) -> None:
         _IMPORTED.clear()
         _INIT_TASKS.clear()
         logbot.edit_last_msg("Importing All Plugins", _LOG.info, _LOG_STR)
@@ -58,7 +60,7 @@ class _AbstractUserge(Client):
                 _LOG.error(_LOG_STR, f"[{name}] - {i_e}")
         await self.finalize_load()
         _LOG.info(_LOG_STR, f"Imported ({len(_IMPORTED)}) Plugins => "
-                  + str([i.__name__ for i in _IMPORTED])) """
+                  + str([i.__name__ for i in _IMPORTED]))
 
 
 
