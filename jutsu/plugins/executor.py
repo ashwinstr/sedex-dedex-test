@@ -150,6 +150,7 @@ class Term:
         await self._process.wait()
         self._finished = True
 
+    @classmethod
     async def execute(cls, cmd: str) -> "Term":
         process = await asyncio.create_subprocess_shell(
             cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
