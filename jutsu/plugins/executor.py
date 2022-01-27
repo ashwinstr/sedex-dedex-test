@@ -76,9 +76,16 @@ async def eval_(sedex: Sedex, message: Message):
 async def term_(sedex: Sedex, message: Message):
     """run commands in shell (terminal with live update)"""
     cmd = await init_func(message)
+    try:
+        cmd = (message.text).split(" ", 1)[1]
+    except:
+        return await sedex.send_message(message.chat.id, "`Command not found.`", reply_to_message_id=message.message_id)
     if cmd is None:
         return
     msg = await message.reply("`Executing terminal ...`")
+    if "config.env" in cmd:
+        await message.err("That's a dangerous operation! Not Permitted!")
+        return
     try:
         t_obj = await Term.execute(cmd)  # type: Term
     except Exception as t_e:  # pylint: disable=broad-except
