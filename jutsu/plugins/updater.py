@@ -92,7 +92,7 @@ async def updater_(bot, message):
     if HEROKU_APP:
         msg_ = await bot.send_message(
             message.chat.id,
-            "`Heroku app found, trying to restart dyno...\nthis will take upto 30 sec`",
+            "`Heroku app found, trying to restart dyno...\nthis will take upto 10 sec`",
         )
 #        repo_ = "https://github.com/ashwinstr/sedex.git"
 #        system(f"git pull {repo_}")
