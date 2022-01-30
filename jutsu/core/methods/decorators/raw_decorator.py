@@ -2,7 +2,7 @@
 from typing import Callable, List, Any
 
 from ...ext import RawClient
-from .... import types
+from ... import types
 
 
 _PYROFUNC = Callable[['types.bound.Message'], Any]
