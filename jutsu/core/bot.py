@@ -81,6 +81,7 @@ class Sedex(_AbstractUserge):
 
     async def start(self):
         await super().start()
+        await self._load_plugins()
 
     async def stop(self):
         await super().stop()
