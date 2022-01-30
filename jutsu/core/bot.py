@@ -16,6 +16,9 @@ from pyrogram.errors import MessageNotModified
 from jutsu import Config, logbot
 from jutsu.plugins import get_all_plugins
 
+from .methods import Methods
+from .ext import RawClient
+
 # from .ext import Raw
 
 # logging.basicConfig(level=logging.INFO)
@@ -35,7 +38,7 @@ async def _complete_init_tasks() -> None:
     _INIT_TASKS.clear()
 
 
-class _AbstractUserge(Client):
+class _AbstractUserge(Methods, RawClient):
     async def finalize_load(self) -> None:
         """ finalize the plugins load """
         await asyncio.gather(_complete_init_tasks(), self.manager.init())
