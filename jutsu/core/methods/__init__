@@ -1,4 +1,4 @@
-# from .decorators import Decorators
+from .decorators import Decorators
 
 
 class Methods(Decorators):
