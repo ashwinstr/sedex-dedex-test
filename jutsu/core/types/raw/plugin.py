@@ -13,7 +13,7 @@ __all__ = ['Plugin']
 import asyncio
 from typing import Union, List, Optional
 
-from userge import logging
+import logging
 from . import command, filter as _filter  # pylint: disable=unused-import
 from ... import client as _client  # pylint: disable=unused-import
 

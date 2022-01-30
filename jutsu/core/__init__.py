@@ -1,2 +1,2 @@
 
-from .bot import Sedex
+# from .bot import Sedex
